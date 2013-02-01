@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Juice Me, Squeeze Me</title>
+
+    <link rel="stylesheet" type="text/css" href="juice.css">
+
+    <script type="text/javascript">
+      // Goals: 1. Create an order form that calculates order total based on input data. 2. Calculate subtotal and total on the fly as the data is entered.
+
+      function updateOrder() {
+
+        // Declare variables
+        var taxrate = 0.095;
+        var juiceprice = 3;
+        var numGreenJuice = document.getElementById("greenjuice").value;
+        var numCarrotJuice = document.getElementById("carrotjuice").value;
+
+        // Calculate variables
+        var subtotal = ((+numGreenJuice) + (+numCarrotJuice)) * juiceprice;
+        // var subtotal = (numGreenJuice + numCarrotJuice) * juiceprice;
+        var tax = subtotal * taxrate;
+        var total = subtotal + tax;
+
+        //Display results
+        document.getElementById("subtotal").value = "$" + subtotal.toFixed(2);
+        document.getElementById("tax").value = "$" + tax.toFixed(2);
+        document.getElementById("total").value = "$" + total.toFixed(2);
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <div id="frame">
+      <div class="heading">Juice Me, Squeeze Me</div>
+      <div class="subheading">All juice bottles $3.00 each, green or carrot</div>
+      <div id="left">
+        <img src="juicemug.png" width="150" height="200" alt="Juice Me, Squeeze Me">
+      </div>
+      <form name="orderform">
+        <div class="field">
+          Name: <input type="text" id="name" name="name" value="">
+        </div>
+        <div class="field">
+        # of green juice: <input type="text" id="greenjuice" name="greenjuice" value="" onchange="updateOrder();">
+     </div>
+        <div class="field">
+        # of carrot juice: <input type="text" id="carrotjuice" name="carrotjuice" value="" onchange="updateOrder();">
+        </div>
+        <div class="field">
+        Minutes 'til pickup: <input type="text" id="pickupminutes" name="pickupminutes" value="">
+        </div>
+        <div class="field">
+        Subtotal: <input type="text" id="subtotal" name="subtotal" value="" readonly="false">
+        </div>
+        <div class="field">
+        Tax: <input type="text" id="tax" name="tax" value="" readonly="true">
+        </div>
+        <div class="field">
+        Total: <input type="text" id="total" name="total" value="" readonly>
+        </div>
+        <div class="field">
+        <input type="button" value="Place Order">
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
